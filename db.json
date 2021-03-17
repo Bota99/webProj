@@ -1,0 +1,22 @@
+{
+  "auth": [
+    {
+      "username": "bota",
+      "password": "123123",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "bota",
+      "password": "123123"
+    },
+    {
+      "username": "danisimo",
+      "email": "danchick006@gmail.com",
+      "password": "123123",
+      "id": 2
+    }
+  ]
+}

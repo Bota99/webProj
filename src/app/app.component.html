@@ -1,2 +1,53 @@
-<router-outlet></router-outlet>
-<app-home></app-home>
+
+<!-- nav -->
+<nav class="navbar navbar-expand-lg navbar-light"
+     style="background-color: #9370DB;">
+  <a class="navbar-brand"
+     href="#">Art Space</a>
+  <button class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-nav collapse navbar-collapse"
+       id="navbarSupportedContent">
+
+    <a class="nav-item nav-link"
+       routerLink="/login"
+       *ngIf="!currentUser">Login</a>
+    <a class="nav-item nav-link"
+       routerLink="/register"
+       *ngIf="!currentUser">Registration</a>
+    <a class="nav-item nav-link"
+       *ngIf="currentUser"
+       (click)="logout(currentUser.id)"><img class="pencil"
+                                             src="{{imgLogoutPath}}"></a>
+
+
+    <a class="nav-item nav-link"
+       routerLink="/profile"><button class="btn"
+                                     style="background-color: transparent ;"
+                                     *ngIf="currentUser"><img class="profileIcon"
+                                                              src="{{imgIconPath}}"></button></a>
+
+
+  </div>
+</nav>
+<script>
+
+</script>
+
+<!-- main app container -->
+
+<div class="container">
+
+  <router-outlet></router-outlet>
+
+</div>
+
+
