@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {AuthService} from '../../../services/auth.service';
 import {UserService} from '../../../services/user.service';
 import {first} from 'rxjs/operators';
+;
 
 @Component({
   selector: 'app-main',

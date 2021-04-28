@@ -4,14 +4,12 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs/operators';
 import {AuthService} from '../../../services/auth.service';
 import {User} from '../../../user.module';
+import {ComponentCanDeactivate} from '../../../exit.hireme.guard';
+import {Observable} from 'rxjs';
 
 
 @Component({templateUrl: 'login.component.html'})
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  loading = false;
-  submitted = false;
-  returnUrl!: string;
+export class LoginComponent implements OnInit, ComponentCanDeactivate {
 
   constructor(
     private formBuilder: FormBuilder,
@@ -26,7 +24,18 @@ export class LoginComponent implements OnInit {
 
     }
   }
+
+
+  // convenience getter for easy access to form fields
+  get f(): any {
+    return this.loginForm.controls;
+  }
+  loginForm!: FormGroup;
+  loading = false;
+  submitted = false;
+  returnUrl!: string;
   currentUser!: User;
+  saved = false;
 
 
   ngOnInit(): void {
@@ -36,13 +45,7 @@ export class LoginComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  }
-
-
-  // convenience getter for easy access to form fields
-  get f(): any {
-    return this.loginForm.controls;
+    this.returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
   }
 
   onSubmit(): void {
@@ -67,5 +70,19 @@ export class LoginComponent implements OnInit {
           this.loading = false;
           console.log('Baka!');
         });
+  }
+  // tslint:disable-next-line:typedef
+  save(){
+    this.saved = true;
+  }
+
+  canDeactivate(): boolean | Observable<boolean>{
+
+    if (!this.saved){
+      return confirm('Вы хотите покинуть страницу?');
+    }
+    else{
+      return true;
+    }
   }
 }

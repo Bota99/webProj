@@ -5,6 +5,8 @@ import {RegisterComponent} from './auth/components/register/register.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MainComponent} from './shared/components/main/main.component';
 
+
+
 const routes: Routes = [
   {path: '', component: MainComponent},
   {path: 'login', component: LoginComponent},

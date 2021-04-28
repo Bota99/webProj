@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
+import {Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { LoginComponent } from './auth/components/login/login.component';
@@ -12,7 +13,16 @@ import { DonatComponent } from './shared/components/donat/donat.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
-import {RouterModule} from '@angular/router';
+import {ExitAboutGuard} from './exit.hireme.guard';
+
+const appRoutes: Routes = [
+  { path: '', component: LoginComponent},
+  {
+    path: 'login',
+    component: LoginComponent,
+    canDeactivate: [ExitAboutGuard]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -34,7 +44,7 @@ import {RouterModule} from '@angular/router';
     CommonModule
 
   ],
-  providers: [],
+  providers: [ExitAboutGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

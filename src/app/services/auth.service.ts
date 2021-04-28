@@ -31,11 +31,9 @@ export class AuthService {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
-
         return user;
       }));
   }
-
   logout(id: number): void {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
